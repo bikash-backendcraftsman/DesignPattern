@@ -1,4 +1,4 @@
-package com.technostack.concept;
+package com.technostack.conceptImpl;
 
 public class EagerInitializationSingleton {
     //➡️ Here, object is created at class load time, even if you never call getInstance().

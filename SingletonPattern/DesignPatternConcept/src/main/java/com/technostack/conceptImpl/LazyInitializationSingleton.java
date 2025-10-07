@@ -1,4 +1,4 @@
-package com.technostack.concept;
+package conceptImpl;
 
 /**
  * “Lazy initialization” means the object is created only when it is first requested, not when the class is loaded.
@@ -34,4 +34,11 @@ public class LazyInitializationSingleton {
         //Return the instance[Either newly created or existed instance]
         return instance;
     }
+
+    /**
+     *  Problem With Lazy Initialization Singleton : Not Thread Safe.
+     *
+     *  Solution : So if we go with this approach and implement in project we are going to face Thread safe issues.
+     *   So we have to go for Thread safe Singleton Approach.
+     */
 }
