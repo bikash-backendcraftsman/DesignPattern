@@ -19,6 +19,12 @@ public class LazyInitializationSingleton {
     private LazyInitializationSingleton() {
 
     }
+
+    /**
+     * This implementation is not thread-safe. If multiple threads call getInstance() simultaneously when instance is null,
+     * it's possible to create multiple instances.
+     */
+
     public static LazyInitializationSingleton getInstance() {
         // check if instance is null
         if (instance == null) {
