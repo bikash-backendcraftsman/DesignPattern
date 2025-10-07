@@ -1,4 +1,4 @@
-package conceptImpl;
+package com.technostack.conceptImpl;
 
 /**
  * “Lazy initialization” means the object is created only when it is first requested, not when the class is loaded.
