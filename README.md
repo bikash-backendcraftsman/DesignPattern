@@ -36,6 +36,7 @@ Level                             Focus                                  Descrip
 
 ⚙️ Repository Structure
 
+<pre>
 📁 DesignPatternWorkspace/
  ┣ 📁 src/
  ┃ ┣ 📁 main/java/com/technostack/conceptImpl/
@@ -49,6 +50,8 @@ Level                             Focus                                  Descrip
  ┃     ┣ 📊 Singleton_UML.png
  ┃     ┗ 📊 Factory_SequenceDiagram.png
  ┗ 📄 README.md
+</pre>
+
 
 
 🧠 Retention Playbook
