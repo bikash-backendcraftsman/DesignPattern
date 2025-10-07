@@ -36,22 +36,19 @@ Level                             Focus                                  Descrip
 
 ⚙️ Repository Structure
 
-DesignPatternWorkspace/
-│
-├── src/
-│   ├── main/java/com/technostack/conceptImpl/
-│   │   ├── EagerInitializationSingleton.java
-│   │   ├── LazyInitializationSingleton.java
-│   │   ├── FactoryPattern/
-│   │   ├── StrategyPattern/
-│   │   ├── ObserverPattern/
-│   │   └── ...
-│   └── resources/
-│       └── diagrams/
-│           ├── Singleton_UML.png
-│           ├── Factory_SequenceDiagram.png
-│
-└── README.md  ← You are here
+📁 DesignPatternWorkspace/
+ ┣ 📁 src/
+ ┃ ┣ 📁 main/java/com/technostack/conceptImpl/
+ ┃ ┃ ┣ 🧩 EagerInitializationSingleton.java
+ ┃ ┃ ┣ 🧩 LazyInitializationSingleton.java
+ ┃ ┃ ┣ 📁 FactoryPattern/
+ ┃ ┃ ┣ 📁 StrategyPattern/
+ ┃ ┃ ┣ 📁 ObserverPattern/
+ ┃ ┃ ┗ ...
+ ┃ ┗ 📁 resources/diagrams/
+ ┃     ┣ 📊 Singleton_UML.png
+ ┃     ┗ 📊 Factory_SequenceDiagram.png
+ ┗ 📄 README.md
 
 
 🧠 Retention Playbook
