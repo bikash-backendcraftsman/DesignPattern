@@ -84,9 +84,13 @@ Level                             Focus                                  Descrip
 🎯 Why You’ll Love This
 
 ✅ Hands-On Code, Not Just Theory
+
 ✅ Step-by-Step Progression (from individual patterns to system architecture)
+
 ✅ Retention-First Learning Framework
+
 ✅ GitHub-Portfolio Friendly Structure
+
 ✅ Ideal for Backend Developers targeting Product-based Companies
 
 🧑‍💻 Maintainer
