@@ -1,0 +1,39 @@
+Pattern      Core Goal
+
+Factory      ncapsulate object creation logic and decide which subclass or implementation to instantiate.
+
+
+🧠 2️⃣ Simple Way to Think
+
+🟩 Singleton = “One instance shared”
+
+Control how many objects exist.
+
+🟦 Factory = “Which instance to create”
+
+Control which type of object to create.
+
+
+✅ Key Points:
+	•	Creates different objects based on input type.
+	•	Centralizes creation logic.
+	•	The number of objects = depends on how many times factory is called.
+	•	Focuses on type of object, not lifecycle.
+
+✅ Use Factory when:
+	•	You want to delegate object creation logic.
+	•	The object type may vary (runtime decision).
+
+Examples:
+	•	Payment processors (UPI, Card, NetBanking)
+	•	File parsers (CSVParser, XMLParser, JSONParser)
+	•	Notification senders (Email, SMS, Push)
+
+
+🧠 9️⃣ Quick Mnemonic to Remember
+
+Singleton = ONE object shared
+Factory = MANY objects decided dynamically
+
+👉 Singleton = “How many”
+👉 Factory = “Which one”
