@@ -1,0 +1,112 @@
+(Author: bikash-backendcraftsman)
+
+🧩 Scenario Overview
+
+When a large file (e.g., a .png diagram) is accidentally committed to Git and then deleted later,
+Git still stores that file inside its history, increasing repo size and causing push failures like:
+
+error: RPC failed; HTTP 400
+send-pack: unexpected disconnect while reading sideband packet
+fatal: the remote end hung up unexpectedly.
+
+To fix this, we rewrote Git history and permanently removed the file.
+
+🧠 Key Git Commands Used (With Explanations)
+
+🔹 1. Check Repository Status
+
+git status : Shows the current state of your working directory and staging area.
+
+🔹 2. Identify Large Objects in the Git History
+
+git verify-pack -v .git/objects/pack/pack-*.idx | sort -k3 -n | tail -10 : Lists the largest objects stored in the repo.
+                                                                           Helps detect which blob (file) is consuming space.
+
+🔹 3. Find Which File a Blob Belongs To
+
+git rev-list --objects --all | grep <blob-id>
+
+Example: git rev-list --objects --all | grep a0411a5ac85ec226fd9e8cc1a232b75747a8623d
+This reveals the exact file path for that blob in Git history.
+
+🔹 4. Remove File from Git History (Legacy Method)
+
+git filter-branch --force --index-filter \
+  'git rm --cached --ignore-unmatch "<file-path>"' \
+  --prune-empty --tag-name-filter cat -- --all
+
+  ➡️ Removes the file from all commits in the repo’s history.
+  We used it first but replaced it with the modern approach below.
+
+🔹 5. Modern and Safer Cleanup
+
+Install git-filter-repo (preferred modern tool): brew install git-filter-repo        # macOS
+                                                 # or
+                                                 pip install git-filter-repo         # Python alternative
+
+  Then remove the file from all commits:
+
+  git filter-repo --force --invert-paths --path '<exact-path-from-rev-list>'
+
+  Example (your case):
+
+  git filter-repo --force --invert-paths --path 'FactoryPattern/FactoryPattenConcept/A_UML_class_diagram_titled_"Factory_Design_Pattern.png'
+ ==> This permanently erases the file from all branches and history.
+
+ 🔹 6. Clean Up Stale Objects
+
+ git reflog expire --expire=now --all
+ git gc --prune=now --aggressive
+
+ 🔹 7. Verify Cleanup
+
+ git verify-pack -v .git/objects/pack/pack-*.idx | sort -k3 -n | tail -10
+
+ ✅ The large blob (e.g., a0411a5ac85e...) should no longer appear.
+
+ 🔹 8. Force Push to Remote
+
+ After history rewrite, push the clean branch:
+
+git push origin master --force
+or
+git push origin main --force
+
+⚠️ Required because local history is now different from remote.
+Only use --force when you’re sure no one else depends on the old commits.
+
+🔹 9. Confirm Remote Cleanliness
+
+git remote -v
+
+Shows all configured remote repositories and their URLs.
+Verify that origin points to: https://github.com/bikash-backendcraftsman/DesignPattern.git
+
+🔹 10. Prune Old Remote References
+
+git fetch --prune
+
+Removes stale references to deleted remote branches or commits.
+
+🔹 11. Verify Final Repo State
+
+git log --oneline -5
+
+Ensures recent commits are intact and the file is gone from history.
+
+
+✅ Final Verification Checklist
+
+Check                                       Expected Result
+
+verify-pack                                 No large blobs listed
+
+rev-list                                    PNG file not found
+
+GitHub repo                                 No old diagram file
+
+git push                                    Push succeeds without RPC error
+
+IntelliJ                                    Syncs cleanly with origin
+
+
